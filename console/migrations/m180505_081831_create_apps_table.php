@@ -12,9 +12,19 @@ class m180505_081831_create_apps_table extends Migration
      */
     public function safeUp()
     {
-        $this->createTable('apps', [
+        $this->createTable('applications', [
             'id' => $this->primaryKey(),
+            'first_name' => $this->string(),
+            'last_name' => $this->string(),
+            'phone' => $this->string(),
         ]);
+
+        $this->createTable('applications_products', [
+            'product_id' => $this->string(),
+            'application_id' => $this->string(),
+        ]);
+
+        $this->createIndex('ix_application_id_product_id', 'applications_products', ['application_id', 'product_id']);
     }
 
     /**
@@ -22,6 +32,7 @@ class m180505_081831_create_apps_table extends Migration
      */
     public function safeDown()
     {
-        $this->dropTable('apps');
+        $this->dropTable('applications');
+        $this->dropTable('applications_products');
     }
 }
