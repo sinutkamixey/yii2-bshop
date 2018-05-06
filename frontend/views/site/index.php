@@ -4,7 +4,7 @@
 
 $this->title = 'My Yii Application';
 $i = 0;
-
+$div = false;
 ?>
 <div class="site-index">
 
@@ -16,6 +16,7 @@ $i = 0;
         <?php /** @var \common\models\Products[] $products */
         foreach ($products as $key => $product) : ?>
             <?php if ($i == 0) {
+				$div = true;
                 echo '<div class="row">';
             } ?>
             <div class="col-lg-4">
@@ -31,9 +32,12 @@ $i = 0;
             </div>
             <?php 
             $i++;
-            if ($i == 3) {
+            if (($i == 3) || (($key + 1) == count($products))) {
                 $i = 0;
-                echo '</div>';
+                if ($div) {
+					$div = false;
+					echo '</div>';
+				}
             } ?>
         <?php endforeach; ?>
     </div>
