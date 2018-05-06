@@ -69,9 +69,10 @@ class ProductsController extends Controller
 
         if ($model->load(Yii::$app->request->post())) {
             $model->imageFile = UploadedFile::getInstance($model, 'imageFile');
-            if ($model->upload()) {
-                $model->save();
-            }
+            if ($model->imageFile){
+				$model->upload();
+			}
+            $model->save();
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
@@ -93,9 +94,10 @@ class ProductsController extends Controller
 
         if ($model->load(Yii::$app->request->post())) {
             $model->imageFile = UploadedFile::getInstance($model, 'imageFile');
-            if ($model->upload()) {
-                $model->save();
-            }
+            if ($model->imageFile){
+				$model->upload();
+			}
+            $model->save();
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
