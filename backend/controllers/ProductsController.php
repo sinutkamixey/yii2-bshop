@@ -78,7 +78,9 @@ class ProductsController extends Controller
                 //Сохраняем
                 $model->upload();
             }
+            // Сохраняем продукт
             $model->save();
+            // Перенаправляем на страницу нового продукта
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
