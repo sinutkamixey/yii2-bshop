@@ -2,44 +2,31 @@
 
 /* @var $this yii\web\View */
 
-$this->title = 'My Yii Application';
-$i = 0;
-$div = false;
+$this->title = 'Главная';
 ?>
-<div class="site-index">
-
-    <div class="jumbotron">
-        <h1>Beauty boxes</h1>
-    </div>
-
-    <div class="body-content">
-        <?php /** @var \common\models\Products[] $products */
-        foreach ($products as $key => $product) : ?>
-            <?php if ($i == 0) {
-				$div = true;
-                echo '<div class="row">';
-            } ?>
-            <div class="col-lg-4">
-                <h2><?= $product->name ?></h2>
-
-                <p><img width="200px" src="<?= $product->getCover() ?>" alt=""></p>
-                <p><?= $product->description ?></p>
-                <p><?= $product->amount ?> руб.</p>
-                <p><?= $product->getQuantity() ?> шт.</p>
-
-                <p><a class="btn btn-default" href="/applications/create?id=<?= $product->id ?>">Заказать</a>
-                </p>
+<div class="site-about">
+    <h1 class="text-center">Интернет-магазин Beauty Box приветствует Вас!</h1>
+    <div class="row">
+        <div class="col-md-4">
+            <img width="400px" src="/main.jpg" alt="">
+        </div>
+        <div class="col-md-8">
+            <div class="row">
             </div>
-            <?php 
-            $i++;
-            if (($i == 3) || (($key + 1) == count($products))) {
-                $i = 0;
-                if ($div) {
-					$div = false;
-					echo '</div>';
-				}
-            } ?>
-        <?php endforeach; ?>
+            <div class="row">
+                <div class="col-md-12">
+                    <p style="font-size: 18px">Beauty Box – это коробочка-сюрприз с 7-10 мини-продуктами косметики и
+                        парфюмерии класса люкс и
+                        специальными
+                        предложениями от ведущих брендов. Каждый месяц наши бьюти-эксперты подбирают специально для Вас
+                        средства
+                        по
+                        уходу за кожей, волосами, декоративную косметику и ароматы, которые мы доставляем к Вашим
+                        дверям.</p>
+                </div>
+            </div>
+            <div class="row">
+            </div>
+        </div>
     </div>
-
 </div>

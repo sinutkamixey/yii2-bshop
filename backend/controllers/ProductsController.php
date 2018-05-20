@@ -65,13 +65,19 @@ class ProductsController extends Controller
      */
     public function actionCreate()
     {
+        // Создаем объект продукта
         $model = new Products();
 
+        // Заполняем объект переданными данными из формы, если они есть и загружены,
+        // то переходим в условие
         if ($model->load(Yii::$app->request->post())) {
+            // Грузим изображение из запроса
             $model->imageFile = UploadedFile::getInstance($model, 'imageFile');
-            if ($model->imageFile){
-				$model->upload();
-			}
+            //Если есть изображение
+            if ($model->imageFile) {
+                //Сохраняем
+                $model->upload();
+            }
             $model->save();
             return $this->redirect(['view', 'id' => $model->id]);
         }
@@ -94,9 +100,9 @@ class ProductsController extends Controller
 
         if ($model->load(Yii::$app->request->post())) {
             $model->imageFile = UploadedFile::getInstance($model, 'imageFile');
-            if ($model->imageFile){
-				$model->upload();
-			}
+            if ($model->imageFile) {
+                $model->upload();
+            }
             $model->save();
             return $this->redirect(['view', 'id' => $model->id]);
         }

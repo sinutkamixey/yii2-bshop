@@ -30,14 +30,18 @@ class ApplicationsController extends Controller
     }
 
     /**
+     * Метод, который отображает список заказов в админке
      * Lists all Applications models.
      * @return mixed
      */
     public function actionIndex()
     {
+        //Создаем объект поиска заказов
         $searchModel = new ApplicationsSearch();
+        // Загружаем пользовательские фильтры из запроса
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
+        // Отображаем страничку с отфильтрованными данными
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
@@ -45,6 +49,8 @@ class ApplicationsController extends Controller
     }
 
     /**
+     * Метод для отображения одного заказа
+     *
      * Displays a single Applications model.
      * @param integer $id
      * @return mixed
@@ -58,6 +64,8 @@ class ApplicationsController extends Controller
     }
 
     /**
+     * Метод для удаления заказа
+     *
      * Deletes an existing Applications model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id

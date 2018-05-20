@@ -22,9 +22,9 @@ return [
         ],
         'db' => [
             'class' => 'yii\db\Connection',
-            'dsn' => 'mysql:host=mysql;dbname=bshop',
-            'username' => 'bshop',
-            'password' => 'bshop',
+            'dsn' => 'mysql:host=mysql;dbname=bank',
+            'username' => 'bank',
+            'password' => 'bank',
             'charset' => 'utf8',
         ],
         'session' => [

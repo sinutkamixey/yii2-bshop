@@ -17,6 +17,8 @@ class ApplicationsController extends Controller
 {
 
     /**
+     * Страница заказа продукта
+     *
      * Creates a new Applications model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
@@ -38,6 +40,8 @@ class ApplicationsController extends Controller
     }
 
     /**
+     * Метод для поиска продукта в БД по ID
+     *
      * Finds the Applications model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id

@@ -36,20 +36,11 @@ AppAsset::register($this);
             'style' => 'background-color:#c92bcc; color: white;'
         ],
     ]);
+    // Пункты меня в верхнем баре.
     $menuItems = [
         ['label' => 'Главная', 'url' => ['/site/index']],
+        ['label' => 'Интернет-магазин', 'url' => ['/site/shop']],
     ];
-    if (Yii::$app->user->isGuest) {
-    } else {
-        $menuItems[] = '<li>'
-            . Html::beginForm(['/site/logout'], 'post')
-            . Html::submitButton(
-                'Logout (' . Yii::$app->user->identity->username . ')',
-                ['class' => 'btn btn-link logout']
-            )
-            . Html::endForm()
-            . '</li>';
-    }
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => $menuItems,
