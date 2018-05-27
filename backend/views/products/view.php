@@ -33,7 +33,7 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute' => 'cover',
                 'format' => 'raw',
-                'value'=>function($data) { return "<img src='http://127.0.0.1:1230/" .  $data->getCover() . "' width='200px'"; },
+                'value'=>function($data) { return "<img src='http://194.67.206.170:1231/" .  $data->getCover() . "' width='200px'"; },
             ],
             'description',
             'amount',

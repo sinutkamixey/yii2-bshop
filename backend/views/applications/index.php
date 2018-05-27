@@ -9,7 +9,7 @@ use yii\widgets\Pjax;
 /* @var $searchModel common\models\ApplicationsSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Заявки');
+$this->title = Yii::t('app', 'Заказы');
 $this->params['breadcrumbs'][] = $this->title;
 
 $this->registerJs(' 
