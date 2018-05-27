@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\web\View;
 use yii\widgets\Pjax;
 
 /* @var $this yii\web\View */
@@ -10,6 +11,27 @@ use yii\widgets\Pjax;
 
 $this->title = Yii::t('app', 'Заявки');
 $this->params['breadcrumbs'][] = $this->title;
+
+$this->registerJs(' 
+$("#wait").on("click", function() {
+    var keys = $(\'#grid\').yiiGridView(\'getSelectedRows\');
+    if (keys) {
+        $.get( "/applications/change?keys=" + keys.join(",") + "&type=20", function( data ) {
+            window.location="/applications";
+        });
+    }
+});
+
+$("#success").on("click", function() {
+    var keys = $(\'#grid\').yiiGridView(\'getSelectedRows\');
+    if (keys) {
+        $.get( "/applications/change?keys=" + keys.join(",") + "&type=10", function( data ) {
+            window.location="/applications";
+        });
+    }
+});
+', View::POS_READY);
+
 ?>
 <div class="applications-index">
 
@@ -17,11 +39,34 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php Pjax::begin(); ?>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
+    <?= Html::button('Ожидает', [
+        'class' => 'btn btn-warning',
+        'id' => 'wait'
+    ]) ?>
+    <?= Html::button('Выполнено', [
+        'class' => 'btn btn-success',
+        'id' => 'success'
+    ]) ?>
+
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
+        'id' => 'grid',
+        'rowOptions' => function ($model) {
+            if ($model->status == \common\models\Applications::DONE_STATUS) {
+                return ['class' => 'success'];
+            }
+            if ($model->status == \common\models\Applications::WAIT_STATUS) {
+                return ['class' => 'warning'];
+            }
+        },
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
+
+            [
+                'class' => 'yii\grid\CheckboxColumn',
+                // you may configure additional properties here
+            ],
 
             'id',
             'first_name',
@@ -40,8 +85,24 @@ $this->params['breadcrumbs'][] = $this->title;
                         return "<a href='/products/view?id={$id}'>$name</a>";
                     },
             ],
+            'created_at',
 
-            ['class' => 'yii\grid\ActionColumn', 'template' => '{view} {delete}'],
+            [
+                'class' => 'yii\grid\ActionColumn',
+                'template' => '{view} | {delete}',
+                'buttons' => [
+                    'view' => function ($url, $model) {
+                        return Html::a('Просмотр', $url, [
+                            'title' => 'Просмотр',
+                        ]);
+                    },
+                    'delete' => function ($url, $model) {
+                        return Html::a('Удаление', $url, [
+                            'title' => 'Удаление',
+                        ]);
+                    },
+                ]
+            ],
         ],
     ]); ?>
     <?php Pjax::end(); ?>

@@ -30,6 +30,20 @@ class ApplicationsController extends Controller
     }
 
     /**
+     * @param $keys
+     * @param $type
+     */
+    public function actionChange($keys, $type)
+    {
+        if ($keys && $type) {
+            $keys = explode(',', $keys);
+            if ($keys) {
+                $result = Applications::updateAll(['status' => (int)$type], ['id' => $keys]);
+            }
+        }
+    }
+
+    /**
      * Метод, который отображает список заказов в админке
      * Lists all Applications models.
      * @return mixed
