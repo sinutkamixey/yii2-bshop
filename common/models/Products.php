@@ -66,6 +66,7 @@ class Products extends \yii\db\ActiveRecord
             'name' => Yii::t('app', 'Название'),
             'cover' => Yii::t('app', 'Обложка'),
             'description' => Yii::t('app', 'Описание'),
+            'imageFile' => Yii::t('app', 'Обложка'),
             'amount' => Yii::t('app', 'Сумма'),
             'quantity' => Yii::t('app', 'Количество'),
         ];

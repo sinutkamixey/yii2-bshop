@@ -99,6 +99,7 @@ $("#success").on("click", function() {
                     'delete' => function ($url, $model) {
                         return Html::a('Удаление', $url, [
                             'title' => 'Удаление',
+                            'data-confirm' => "Вы уверены, что хотите удалить этот элемент?"
                         ]);
                     },
                 ]
