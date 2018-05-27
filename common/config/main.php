@@ -5,6 +5,8 @@ return [
         '@npm' => '@vendor/npm-asset',
     ],
     'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
+    'name' => 'Beauty box',
+    'language' => 'ru',
     'components' => [
         'cache' => [
             'class' => 'yii\caching\FileCache',

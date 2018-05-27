@@ -8,7 +8,7 @@ use yii\widgets\Pjax;
 /* @var $searchModel common\models\ApplicationsSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Applications');
+$this->title = Yii::t('app', 'Заявки');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="applications-index">
@@ -28,7 +28,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'last_name',
             'phone',
             [
-                'attribute' => 'product',
+                'attribute' => 'Продукт',
                 'format' => 'raw',
                 'value' => /**
                  * @param \common\models\Applications $data
