@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model common\models\Applications */
 
-$this->title = Yii::t('app', 'Create Applications');
+$this->title = Yii::t('app', 'Сделать заказ');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="applications-create">
