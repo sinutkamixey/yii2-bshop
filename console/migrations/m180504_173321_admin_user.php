@@ -16,6 +16,10 @@ class m180504_173321_admin_user extends Migration
             'username' => 'sinutkamixey',
             'email' => 'sinutkamixey@admin.com',
             'password_hash' => Yii::$app->getSecurity()->generatePasswordHash('qwerty'),
+            'auth_key' => '',
+            'status' => '20',
+            'created_at' => '',
+            'updated_at' => '',
         ]);
     }
 
