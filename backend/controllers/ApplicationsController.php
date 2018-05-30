@@ -23,8 +23,10 @@ class ApplicationsController extends Controller
     {
         if ($keys && $type) {
             $keys = explode(',', $keys);
-            if ($keys) {
+            if ($keys && $type == Applications::WAIT_STATUS) {
                 $result = Applications::updateAll(['status' => (int)$type], ['id' => $keys]);
+            } elseif ($keys && $type == Applications::DONE_STATUS) {
+                Applications::deleteAll(['id' => $keys]);
             }
         }
     }
