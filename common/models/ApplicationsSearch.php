@@ -19,7 +19,7 @@ class ApplicationsSearch extends Applications
     {
         return [
             [['id'], 'integer'],
-            [['first_name', 'last_name', 'phone'], 'safe'],
+            [['first_name', 'last_name', 'phone', 'status'], 'safe'],
         ];
     }
 
@@ -45,9 +45,17 @@ class ApplicationsSearch extends Applications
 
         // add conditions that should always apply here
 
+        if (isset($params['isNew'])) {
+            $query->andWhere(['is', 'status', null]);
+        }
+
+        if (isset($params['isWait'])) {
+            $query->andWhere(['status' => Applications::WAIT_STATUS]);
+        }
+
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
-            'sort'=> ['defaultOrder' => ['created_at'=>SORT_ASC]]
+            'sort' => ['defaultOrder' => ['created_at' => SORT_ASC]]
         ]);
 
         $this->load($params);

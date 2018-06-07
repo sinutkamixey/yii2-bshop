@@ -23,11 +23,7 @@ class ApplicationsController extends Controller
     {
         if ($keys && $type) {
             $keys = explode(',', $keys);
-            if ($keys && $type == Applications::WAIT_STATUS) {
-                $result = Applications::updateAll(['status' => (int)$type], ['id' => $keys]);
-            } elseif ($keys && $type == Applications::DONE_STATUS) {
-                Applications::deleteAll(['id' => $keys]);
-            }
+            $result = Applications::updateAll(['status' => (int)$type], ['id' => $keys]);
         }
     }
 
@@ -41,10 +37,33 @@ class ApplicationsController extends Controller
         //Создаем объект поиска заказов
         $searchModel = new ApplicationsSearch();
         // Загружаем пользовательские фильтры из запроса
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $params = Yii::$app->request->queryParams;
+        $params['isNew'] = true;
+        $dataProvider = $searchModel->search($params);
 
         // Отображаем страничку с отфильтрованными данными
         return $this->render('index', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
+    /**
+     * Метод, который отображает список заказов в админке
+     * Lists all Applications models.
+     * @return mixed
+     */
+    public function actionWaiting()
+    {
+        //Создаем объект поиска заказов
+        $searchModel = new ApplicationsSearch();
+        // Загружаем пользовательские фильтры из запроса
+        $params = Yii::$app->request->queryParams;
+        $params['isWait'] = true;
+        $dataProvider = $searchModel->search($params);
+
+        // Отображаем страничку с отфильтрованными данными
+        return $this->render('waiting', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);

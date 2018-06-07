@@ -9,15 +9,15 @@ use yii\widgets\Pjax;
 /* @var $searchModel common\models\ApplicationsSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Заказы');
+$this->title = Yii::t('app', 'Заказы в ожидании');
 $this->params['breadcrumbs'][] = $this->title;
 
 $this->registerJs(' 
-$("#wait").on("click", function() {
+$("#success").on("click", function() {
     var keys = $(\'#grid\').yiiGridView(\'getSelectedRows\');
     if (keys) {
-        $.get( "/applications/change?keys=" + keys.join(",") + "&type=20", function( data ) {
-            window.location="/applications";
+        $.get( "/applications/change?keys=" + keys.join(",") + "&type=10", function( data ) {
+            window.location="/applications/waiting";
         });
     }
 });
@@ -29,10 +29,9 @@ $("#wait").on("click", function() {
     <h1><?= Html::encode($this->title) ?></h1>
     <?php Pjax::begin(); ?>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
-    <?= Html::button('Ожидает', [
-        'class' => 'btn btn-warning',
-        'id' => 'wait'
+    <?= Html::button('Выполнено', [
+        'class' => 'btn btn-success',
+        'id' => 'success'
     ]) ?>
 
     <?= GridView::widget([
